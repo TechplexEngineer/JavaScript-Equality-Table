@@ -146,6 +146,8 @@ supportsCanvas = do ->
         td.addClass("strict-equality")
       else if r2
         td.addClass("loose-equality")
+      td.attr('x',x)
+      td.attr('y',y)
 
   $table
 

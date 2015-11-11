@@ -15,6 +15,11 @@
 
 	    2013-Nov-11. Correcting issue where "[]===[]" was incorrectly marked as true.
 -->
+	<style>
+		.highlight div{
+			border: 2px solid red !important;
+		}
+	</style>
 </head>
 <body>
 	<div id="content">
@@ -32,6 +37,26 @@
 
 		buildUnifiedComparisonTable(values).appendTo("#table")
 		buildKeyTable().appendTo("#key")
+
+		$('td.cell').hover(function(e){
+			if (e.type == "mouseenter") {
+				var $item = $(e.target);
+				if ($item[0].nodeName == 'DIV') {
+					$item = $item.parent('td.cell');
+				}
+				var x = $item.attr('x');
+				var y = $item.attr('y');
+				console.log(x, y, e.type);
+				
+				console.log($('td[x='+x+']'));
+				$('td[x='+x+']').addClass('highlight');
+				$('td[y='+y+']').addClass('highlight');
+			} else if (e.type == "mouseleave") {
+				//remove highlight class
+				$('.highlight').removeClass('highlight');
+			}
+			
+		});
 	</script>
 </body>
 </html>
